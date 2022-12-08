@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import SidebarMenu, { SidebarMenuCollapse, SidebarMenuHeader, SidebarMenuNav, SidebarMenuNavLink } from 'react-bootstrap-sidebar-menu';
+import SidebarMenu from 'react-bootstrap-sidebar-menu';
+import { useSelector } from 'react-redux';
+import { useApply } from './redux/generalSlice';
 
-
+function Number() {
+    const number = useSelector<any, number>(state => state.number || 0);
+  
+    return <b>{number}</b>;
+  }
 
 function App() {
     const [expanded, setExpanded] = useState(true);
+    const apply = useApply();
 
     const abrir = () => {
         var body = document.body;
@@ -16,7 +23,7 @@ function App() {
 
         setExpanded(!expanded);
     }
-    
+
     return (
         <div id="wrapper">
             <nav className="navbar-default navbar-static-side" role="navigation">
@@ -24,7 +31,7 @@ function App() {
                     <ul className="nav metismenu" id="side-menu">
                         <li className="nav-header">
                             <div className="dropdown profile-element">
-                                <a data-toggle="dropdown" className="dropdown-toggle" href="#">
+                                <a data-toggle="dropdown" className="dropdown-toggle" href="#/">
                                     <span className="block m-t-xs font-bold">Example user</span>
                                     <span className="text-muted text-xs block">menu <b className="caret"></b></span>
                                 </a>
@@ -45,9 +52,9 @@ function App() {
                     </ul>
 
                 </div>
-            </nav> 
+            </nav>
 
-            <div id="page-wrapper" className="gray-bg" style={{ width: '100%'}}>
+            <div id="page-wrapper" className="gray-bg" style={{ width: '100%' }}>
                 <div className="row border-bottom">
                     <nav className="navbar navbar-static-top white-bg" role="navigation" style={{ marginBottom: 0 }}>
                         <div className="navbar-header">
@@ -59,7 +66,7 @@ function App() {
                         </div>
                         <ul className="nav navbar-top-links navbar-right">
                             <li>
-                                <a href="#">
+                                <a href="#/">
                                     <i className="fa fa-sign-out"></i> Log out
                                 </a>
                             </li>
@@ -68,6 +75,8 @@ function App() {
                     </nav>
                 </div>
                 <div className="wrapper wrapper-content animated fadeInRight">
+                    <Number /><br />
+                    <button onClick={() => apply("number", Math.random())}>Randomize</button>
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="text-center m-t-lg">
