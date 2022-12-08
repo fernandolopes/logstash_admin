@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
 import { useSelector } from 'react-redux';
 import { useApply } from './redux/generalSlice';
 
 function Number() {
-    const number = useSelector<any, number>(state => state.number || 0);
+    const number = useSelector<any, number>(state => state.number);
   
     return <b>{number}</b>;
   }
@@ -13,6 +13,11 @@ function Number() {
 function App() {
     const [expanded, setExpanded] = useState(true);
     const apply = useApply();
+
+    useEffect(() => {
+        apply("number", 0);
+        console.log("aqui!!");
+    });
 
     const abrir = () => {
         var body = document.body;
