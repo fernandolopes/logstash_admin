@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-
-export interface GeneralState {
-  [key: string]: any;
-}
-
-const initialState: GeneralState = {};
+import initialState from './initialState';
 
 export const generalSlice = createSlice({
   name: 'general',
