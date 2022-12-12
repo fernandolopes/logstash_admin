@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Components from './';
+import Pipeline from "./pipelines";
 
 export const routes = [
     {
@@ -13,7 +14,7 @@ export const routes = [
         title: "Pipelines",
         to: "/pipelines",
         path: "/pipelines",
-        element: <h1>Pipelines</h1>
+        element: <Pipeline />
     }
 ];
 
