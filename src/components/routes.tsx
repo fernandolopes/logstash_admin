@@ -1,0 +1,25 @@
+import { createBrowserRouter } from "react-router-dom";
+import Components from './';
+
+export const routes = [
+    {
+        name: "home",
+        title: "Home",
+        to: "/",
+        path: "/",
+        element: <Components />
+    }, {
+        name: "pipelines",
+        title: "Pipelines",
+        to: "/pipelines",
+        path: "/pipelines",
+        element: <h1>Pipelines</h1>
+    }
+];
+
+const browserRouter = createBrowserRouter([{
+    ...routes.find(r => r.path === "/"),
+    children: routes.filter(r => r.path !== "/")
+}]);
+
+export default browserRouter;
