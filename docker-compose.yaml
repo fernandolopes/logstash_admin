@@ -47,3 +47,13 @@ services:
       options:
         max-size: "10m"
         max-file: "50"
+  react-ui:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    container_name: react-ui
+    stdin_open: true
+    volumes:
+       - .:/usr/src/app/logstash_admin
+       - /usr/src/app/logstash_admin/node_modules
