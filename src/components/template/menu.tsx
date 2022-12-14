@@ -20,7 +20,7 @@ function Menu() {
                         IN+
                     </div>
                 </li>
-                {routes.map(route => <MenuItem {...route} />)}
+                {routes.map((route, i) => <MenuItem key={i} {...route} />)}
             </ul>
         </div>
     </nav>;
