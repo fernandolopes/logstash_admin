@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import PipelinesResponse from '../../@types/pipelines';
 import api from "../../api";
+import { loadStatusStyle } from '../../utilities';
 
 function Pipeline() {
     const [response, setResponse] = useState({} as PipelinesResponse);
 
     useEffect(() => {
-        api.get<PipelinesResponse>('pipelines').then((r) => {
-            debugger;
-            setResponse(r.data);
-        })
+        api.get<PipelinesResponse>('pipelines')
+            .then((r) => setResponse(r.data))
+            .catch(error => console.log(error));
     }, []);
 
     return <div className="row">
@@ -17,7 +17,7 @@ function Pipeline() {
             <div className="ibox">
                 <div className="ibox-title">
                     <div className="ibox-tools">
-                        <span className="label label-primary float-right">Status</span>
+                        <span className={`label label-${loadStatusStyle(response.status)} float-right`}>Status</span>
                     </div>
                     <h5>Host:</h5> <span>{response.host}</span>
                 </div>
